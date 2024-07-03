@@ -1,0 +1,17 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model KafkaEvent {
+  createdAt  DateTime  @default(now())
+  eventType  String?
+  id         String    @id @default(cuid())
+  payload    Json?
+  receivedAt DateTime?
+  updatedAt  DateTime  @updatedAt
+}
